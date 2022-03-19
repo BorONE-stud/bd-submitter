@@ -1,0 +1,9 @@
+#!/bin/bash
+
+export NAME="borodinsa"
+
+# if your terminal into colors
+export ATTENTION="\033[033m"
+export ERROR="\033[031m"
+export BLANK="\033[2m"
+export RESET="\033[0m"

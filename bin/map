@@ -1,0 +1,16 @@
+#/bin/bash
+
+# hw1
+case $1 in
+  1)   export HW=hw1; export ORD_NUM=1;;
+  2)   export HW=hw1; export ORD_NUM=2;;
+  10)  export HW=hw1; export ORD_NUM=3;;
+  17)  export HW=hw1; export ORD_NUM=4;;
+  31)  export HW=hw1; export ORD_NUM=5;;
+  33)  export HW=hw1; export ORD_NUM=6;;
+  38)  export HW=hw1; export ORD_NUM=7;;
+  44)  export HW=hw1; export ORD_NUM=8;;
+  53)  export HW=hw1; export ORD_NUM=9;;
+  62)  export HW=hw1; export ORD_NUM=10;;
+  *)   echo -e "${ERROR}Unknown task number!${RESET}"; exit 1;
+esac

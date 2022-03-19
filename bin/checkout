@@ -1,0 +1,29 @@
+#!/bin/bash
+
+source bin/config
+
+# handle help
+if [ $# -eq 0 ]; then
+  echo -e "Usage: checkout HW ORD_NUM"
+  echo
+  echo -e "Creates branch from main (not master :c )"
+  echo
+  echo -e "HW={ hw1, hw2, hw3, hw4, hw5 }"
+  echo -e "ORD_NUM={ hwX:  1, 2, 3, ... }"
+  exit 0
+fi
+
+# args
+HW=$1
+ORD_NUM=$2
+
+REPOSITORY="${NAME}-${HW}"
+
+if [ ! -d $REPOSITORY ]; then 
+  echo -e "${ERROR}Directory $REPOSITORY is not found!${RESET}"
+  exit 1
+fi
+
+cd $REPOSITORY
+
+git checkout "${HW}task${ORD_NUM}"

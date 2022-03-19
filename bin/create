@@ -1,0 +1,34 @@
+#!/bin/bash
+
+source bin/config
+
+# handle help
+if [ $# -eq 0 ]; then
+  echo -e "Usage: ./create HW TASK_ON_SITE"
+  echo
+  echo -e "Creates file (with content from ${ATTENTION}stdin${RESET})"
+  echo
+  echo -e "HW={ hw1, hw2, hw3, hw4, hw5 }"
+  echo -e "TASK_ON_SITE={"
+  echo -e "${BLANK}hw1:${RESET}  1,  2, 10, 17, 31,  33,  38,  44, 53, 62;"
+  echo -e "${BLANK}hw2:${RESET} 11, 12, 15, 20, 22,  29,  30,  68, 74, 86;"
+  echo -e "${BLANK}hw3:${RESET}  7,  9, 14, 16, 23,  32,  48,  84;"
+  echo -e "${BLANK}hw4:${RESET} 37, 41, 47, 70, 73,  87, 102, 112;"
+  echo -e "${BLANK}hw5:${RESET} 65, 82, 90, 96, 98, 100, 105, 109;"
+  echo -e "}"
+  exit 0
+fi
+
+# args
+HW=$1
+TASK_ON_SITE=$2
+
+TASK="$NAME-$HW/task-$TASK_ON_SITE.sql"
+
+# create file
+> $TASK
+
+# write to file
+while read line; do
+  echo $line >> $TASK
+done

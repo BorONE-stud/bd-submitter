@@ -1,0 +1,50 @@
+#!/bin/bash
+
+COMMENT_GENERATOR=FROM_STDIN # { FROM_STDIN, BRANCHLIKE }
+
+source bin/config
+
+# handle help
+if [ $# -eq 0 ]; then
+  echo -e "Usage: commit HW ORD_NUM"
+  echo
+  echo -e "Commits all (with comment from ${ATTENTION}stdin${RESET}) and pushes the commit"
+  echo
+  echo -e "HW={ hw1, hw2, hw3, hw4, hw5 }"
+  echo -e "ORD_NUM={ hwX:  1, 2, 3, ... }"
+  exit 0
+fi
+
+# args
+HW=$1
+ORD_NUM=$2
+
+REPOSITORY="${NAME}-${HW}"
+
+if [ ! -d $REPOSITORY ]; then 
+  echo -e "${ERROR}Directory $REPOSITORY is not found!${RESET}"
+  exit 1
+fi
+
+cd $REPOSITORY
+
+git add .
+
+while true; do
+  # comment generator
+  case $COMMENT_GENERATOR in
+    FROM_STDIN) read comment;;
+    BRANCHLIKE) comment="${HW}task${ORD_NUM}";;
+  esac
+
+  if [ ! -z $comment ]; then
+    break
+  fi
+done
+
+# it would be cool if i checked on git errors
+git commit -m "$comment"
+git push --set-upstream origin "${HW}task${ORD_NUM}"
+
+echo -e "${ATTENTION}don't forget to do merge-request!${RESET}"
+echo -e "Check few lines above. There must be a link to create a merge request"
