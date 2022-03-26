@@ -11,12 +11,21 @@ _Ирония порою может излечить даже то, что за�
 - Clone homework repository to `bd-submitter` directory.
 
 ## How to use
-### Primary method 
-Just type `./submit <task>...` in terminal.
+### From stdin
+Just type `./submit [--from-stdin] <task>...` in terminal.
+End input with `ctrl+d`. Flag is optional.
 
-NOTE that homework repository must be in the same directory with the submit-script, and from that directory you should call srcipt.
+### From file
+Just type `./submit --from-file <task>...` in terminal.
+Make sure you have corresponding files in `tasks` directory.
 
-Also you should not mess with bin folder.
+## Useful tools
+### Split
+If you have file with tasks you can split it.
+If you follow format, file for each task will be splitted.
+You can check example with flag `--example`.
+To erase example use flag `--erase-example`.
 
 ### Auto-comment
-Check commit-script in `/bin` and find `COMMENT_GENERATOR`.
+Check `commit` script in `bin/` and find `COMMENT_GENERATOR`.
+You can make custom generator if you want.

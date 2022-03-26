@@ -18,6 +18,17 @@ if [ $# -eq 0 ]; then
   exit 0
 fi
 
+# handle flags
+while [ $# -gt 0 ]; do
+  case $1 in
+    --from-stdin) CODE_SOURCE="--from-stdin"; shift;;
+    --from-file)  CODE_SOURCE="--from-file";  shift;;
+    --*) echo "${ERROR}Unknown flag${RESET}"; exit 1;;
+    *) break;;
+  esac
+done
+
+# handle tasks
 while [ $# -gt 0 ]; do
   TASK_ON_SITE=$1
   shift
@@ -26,18 +37,17 @@ while [ $# -gt 0 ]; do
 
   bin/checkout $HW $ORD_NUM
 
-  echo "Enter file contetns for task $TASK_ON_SITE:"
-  bin/create $HW $TASK_ON_SITE
+  bin/create $CODE_SOURCE $HW $TASK_ON_SITE
 
   while true; do
-    read -p "Check file contents! Are you sure you want to submit? (Y/n)" yn
+    read -n 1 -r -p "Check file contents! Are you sure you want to submit? (Y/n) " yn
+    echo
     case $yn in
       Y) break;;
       n) exit;;
     esac
   done
 
-  echo "Enter commit comment(${ORD_NUM}-${TASK_ON_SITE}):"
   bin/commit $HW $ORD_NUM
 done 
 

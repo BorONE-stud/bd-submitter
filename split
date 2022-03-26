@@ -1,0 +1,54 @@
+#!/bin/bash
+
+source bin/config
+
+# handle help
+if [ $# -eq 0 ]; then
+  echo -e "Usage: ./split SOURCE_FILE"
+  echo -e "       ./split --[erase-]example"
+  echo
+  echo -e "Splits SOURCE_FILE to tasks files, to submit from file later"
+  echo
+  echo -e "SOURCE_FILE format:"
+  echo -e "Task code shuld start with line '-- TASK_ON_SITE'"
+  echo -e "Then task code"
+  echo -e "..."
+  echo
+  echo -e "This format is translated to files with names 'task-TASK_ON_SITE.sql' with corresponding code"
+  exit 0
+fi
+
+case $1 in
+  --example)
+    mkdir -p tasks
+    SOURCE_FILE="tasks/example_source"
+    echo -e \
+      "-- Example code. This line is 'ignoered' because right after is new task code" \
+      "\n-- X" \
+      "\nsome code related to task-X" \
+      "\n-- Y" \
+      "\nsome code related to task-Y" \
+      > $SOURCE_FILE
+    ;;
+  --erase-example)
+    rm "tasks/example_source" "tasks/task-X.sql" "tasks/task-Y.sql"
+    exit 0
+    ;;
+  *) 
+    SOURCE_FILE="tasks/$1"
+    if [ ! -e $SOURCE_FILE ]; then 
+      echo -e "${ERROR}'${SOURCE_FILE}' does not exist!${RESET}"
+      exit 1
+    fi
+    ;;
+esac
+
+CURRENT_FILE='tasks/task-unkown.sql'
+
+while IFS= read -r line; do
+  SPLITTED=($line)
+  case ${SPLITTED[0]} in
+    --) CURRENT_FILE="tasks/task-${SPLITTED[1]}.sql";;
+    *)  printf '%s\n' "$line" >> $CURRENT_FILE
+  esac
+done < "$SOURCE_FILE"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-COMMENT_GENERATOR=FROM_STDIN # { FROM_STDIN, BRANCHLIKE }
+COMMENT_GENERATOR=BRANCHLIKE # { FROM_STDIN, BRANCHLIKE }
 
 source bin/config
 
@@ -30,17 +30,17 @@ cd $REPOSITORY
 
 git add .
 
-while true; do
-  # comment generator
-  case $COMMENT_GENERATOR in
-    FROM_STDIN) read comment;;
-    BRANCHLIKE) comment="${HW}task${ORD_NUM}";;
-  esac
-
-  if [ ! -z "$comment" ]; then
-    break
-  fi
-done
+# comment generator
+case $COMMENT_GENERATOR in
+  FROM_STDIN)
+    while [ -z "$comment" ]; do
+      echo -e "Enter commit comment for ${BALD}${HW}task${ORD_NUM}${RESET}:"
+      read -r comment
+      break
+    done
+    ;;
+  BRANCHLIKE) comment="${HW}task${ORD_NUM}";;
+esac
 
 # it would be cool if i checked on git errors
 git commit -m "$comment"

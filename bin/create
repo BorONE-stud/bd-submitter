@@ -1,13 +1,18 @@
 #!/bin/bash
 
+CODE_SOURCE="--from-stdin"
+
 source bin/config
 
 # handle help
 if [ $# -eq 0 ]; then
-  echo -e "Usage: ./create HW TASK_ON_SITE"
+  echo -e "Usage: ./create [CODE_SOURCE] HW TASK_ON_SITE"
   echo
   echo -e "Creates file (with content from ${ATTENTION}stdin${RESET})"
   echo
+  echo -e "CODE_SOURCE={ --from-stdin, --from-file }"
+  echo -e "  --from-stdin : don't forget to ${ATTENTION}ctrl+d${RESET} when input is done"
+  echo -e "  --from-file  : expected format is 'TASK_ON_SITE.sql' in directory 'tasks'"
   echo -e "HW={ hw1, hw2, hw3, hw4, hw5 }"
   echo -e "TASK_ON_SITE={"
   echo -e "${BLANK}hw1:${RESET}  1,  2, 10, 17, 31,  33,  38,  44, 53, 62;"
@@ -19,16 +24,35 @@ if [ $# -eq 0 ]; then
   exit 0
 fi
 
+# handle flags
+case $1 in
+  --from-stdin) CODE_SOURCE="--from-stdin"; shift;;
+  --from-file)  CODE_SOURCE="--from-file";  shift;;
+  --*) echo "${ERROR}Unknown flag${RESET}"; exit 1;;
+esac
+
 # args
 HW=$1
 TASK_ON_SITE=$2
 
 TASK="$NAME-$HW/task-$TASK_ON_SITE.sql"
 
-# create file
-> $TASK
-
-# write to file
-while read line; do
-  echo $line >> $TASK
-done
+case $CODE_SOURCE in
+  --from-stdin)
+    echo -e "Enter file contetns for ${BALD}task-${TASK_ON_SITE}${RESET}:"
+    > $TASK
+    while IFS= read -r line; do
+      printf '%s\n' "$line" >> $TASK
+    done
+    ;;
+  --from-file)
+    CODE_SOURCE_FILE="tasks/task-${TASK_ON_SITE}.sql"
+    while [ ! -e "$CODE_SOURCE_FILE" ]; do
+      echo "${CODE_SOURCE_FILE} is not found"
+      echo "Expected format is '${CODE_SOURCE_FILE}' in directory"
+      read -n 1 -s -r -p "Press any key to retry"
+      echo
+    done
+    cp ${CODE_SOURCE_FILE} $TASK
+    ;;
+esac
