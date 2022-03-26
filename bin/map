@@ -1,7 +1,7 @@
 #/bin/bash
 
-# hw1
 case $1 in
+# hw1
   1)   export HW=hw1; export ORD_NUM=1;;
   2)   export HW=hw1; export ORD_NUM=2;;
   10)  export HW=hw1; export ORD_NUM=3;;
@@ -12,5 +12,17 @@ case $1 in
   44)  export HW=hw1; export ORD_NUM=8;;
   53)  export HW=hw1; export ORD_NUM=9;;
   62)  export HW=hw1; export ORD_NUM=10;;
+# hw2
+  11)  export HW=hw2; export ORD_NUM=1;;
+  12)  export HW=hw2; export ORD_NUM=2;;
+  15)  export HW=hw2; export ORD_NUM=3;;
+  20)  export HW=hw2; export ORD_NUM=4;;
+  22)  export HW=hw2; export ORD_NUM=5;;
+  29)  export HW=hw2; export ORD_NUM=6;;
+  30)  export HW=hw2; export ORD_NUM=7;;
+  68)  export HW=hw2; export ORD_NUM=8;;
+  74)  export HW=hw2; export ORD_NUM=9;;
+  86)  export HW=hw2; export ORD_NUM=10;;
+  62)  export HW=hw2; export ORD_NUM=10;;
   *)   echo -e "${ERROR}Unknown task number!${RESET}"; exit 1;
 esac
