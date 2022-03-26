@@ -42,4 +42,4 @@ while [ $# -gt 0 ]; do
 done 
 
 echo "You can visit, to create all the merge requests"
-echo "  https://gitlab2.atp-fivt.org/db2021/borodinsa-hw1/-/branches/all"
+echo "  https://gitlab2.atp-fivt.org/db2021/borodinsa-${HW}/-/branches/all"
