@@ -7,13 +7,16 @@ _Ирония порою может излечить даже то, что за�
 - Check `bin/config` script and change `NAME`
 - ... hope I have not forgot anything important
 
+## Before every contest
+- Clone homework repository to `bd-submitter` directory.
+
 ## How to use
 ### Primary method 
 Just type `./submit <task>...` in terminal.
 
 NOTE that homework repository must be in the same directory with the submit-script, and from that directory you should call srcipt.
 
-Also you should not mess with bin folder
+Also you should not mess with bin folder.
 
 ### Auto-comment
 Check commit-script in `/bin` and find `COMMENT_GENERATOR`.

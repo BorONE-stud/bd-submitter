@@ -37,7 +37,7 @@ while true; do
     BRANCHLIKE) comment="${HW}task${ORD_NUM}";;
   esac
 
-  if [ ! -z $comment ]; then
+  if [ ! -z "$comment" ]; then
     break
   fi
 done
