@@ -4,9 +4,13 @@ source bin/config
 
 # handle help
 if [ $# -eq 0 ]; then
-  echo -e "Usage: ./submit TASK_ON_SITE"
+  echo -e "Usage: ./submit [CODE_SOURCE] TASK_ON_SITE"
   echo
   echo -e "Submits task according to cion rules."
+  echo
+  echo -e "CODE_SOURCE={ --from-stdin, --from-file }"
+  echo -e "  Passed to create-script."
+  echo -e "  Check bin/create."
   echo
   echo -e "TASK_ON_SITE={"
   echo -e "${BLANK}hw1:${RESET}  1,  2, 10, 17, 31,  33,  38,  44, 53, 62;"
@@ -19,14 +23,14 @@ if [ $# -eq 0 ]; then
 fi
 
 # handle flags
-while [ $# -gt 0 ]; do
+# while [ $# -gt 0 ]; do
   case $1 in
     --from-stdin) CODE_SOURCE="--from-stdin"; shift;;
     --from-file)  CODE_SOURCE="--from-file";  shift;;
     --*) echo "${ERROR}Unknown flag${RESET}"; exit 1;;
     *) break;;
   esac
-done
+# done
 
 # handle tasks
 while [ $# -gt 0 ]; do

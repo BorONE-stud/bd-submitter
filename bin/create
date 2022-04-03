@@ -12,7 +12,7 @@ if [ $# -eq 0 ]; then
   echo
   echo -e "CODE_SOURCE={ --from-stdin, --from-file }"
   echo -e "  --from-stdin : don't forget to ${ATTENTION}ctrl+d${RESET} when input is done"
-  echo -e "  --from-file  : expected format is 'TASK_ON_SITE.sql' in directory 'tasks'"
+  echo -e "  --from-file  : expected format is 'task-TASK_ON_SITE.sql' in directory 'tasks'"
   echo -e "HW={ hw1, hw2, hw3, hw4, hw5 }"
   echo -e "TASK_ON_SITE={"
   echo -e "${BLANK}hw1:${RESET}  1,  2, 10, 17, 31,  33,  38,  44, 53, 62;"

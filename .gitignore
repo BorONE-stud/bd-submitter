@@ -1,3 +1,6 @@
+# ignore homework directories
+hw*
+
 # ignore homework repositories
 *-hw*
 
