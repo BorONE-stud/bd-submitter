@@ -4,6 +4,7 @@ hw*
 # ignore homework repositories
 *-hw*
 
+token
 tasks
 
 # OSX thing

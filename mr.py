@@ -5,6 +5,7 @@ name = 'borodinsa'
 
 class color:
   attention = "\033[033m"
+  underline = "\033[4m"
   reset = "\033[0m"
 
 def print_help():
@@ -20,7 +21,7 @@ def print_help():
   print(color.attention, "Set private token!!!", color.reset, sep='')
   print("Go to")
   print(" gitlab > Edit profile > Access token")
-  print("tick api and save the token to token-file")
+  print(f"tick {color.underline}api{color.reset} and save the token to token-file!")
 
 
 def token(token_path: str = 'token'):
