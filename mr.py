@@ -1,7 +1,8 @@
 import gitlab
 from sys import argv
+import os
 
-name = 'borodinsa'
+NAME = 'user'
 
 class color:
   attention = "\033[033m"
@@ -15,13 +16,13 @@ def print_help():
   print("Screenshot should be in a directory named after homework e.g. 'hw3'.")
   print("Screenshot should be named after task on site e.g. '7.png'.")
   print()
-  print(color.attention, "Set 'name'!!!", color.reset, sep='')
-  print("Check top of the file")
+  print(color.attention, "Set NAME!!!", color.reset, sep='')
+  print('Check top of mr.py script')
   print()
   print(color.attention, "Set private token!!!", color.reset, sep='')
-  print("Go to")
-  print(" gitlab > Edit profile > Access token")
-  print(f"tick {color.underline}api{color.reset} and save the token to token-file!")
+  print("Go to: gitlab > Edit profile > Access token")
+  print("  https://gitlab2.atp-fivt.org/-/profile/personal_access_tokens")
+  print(f"Tick {color.underline}api{color.reset} and save the token file named 'token'!")
 
 
 def token(token_path: str = 'token'):
@@ -78,12 +79,18 @@ def main():
   if len(argv) == 1 or argv[1] == '--help':
     print_help()
     return
+  
+  if NAME == 'user':
+    print(color.attention, "Set NAME!!!", color.reset, sep='')
+    print('Check top of mr.py script')
+    return
 
   for task in argv[1:]:
     mapped = map_task(int(task))
-    project = get_project_by(name=f"{name}-{mapped['hw']}")
+    project = get_project_by(name=f"{NAME}-{mapped['hw']}")
     mr = create_mr(project, **mapped)
-    print(f"{mapped['hw']}{mapped['ord_task']}:", mr.web_url)
+    print(f"{mapped['hw']}{mapped['ord_task']}:")
+    print(" ", mr.web_url)
 
 if __name__  == '__main__':
   main()

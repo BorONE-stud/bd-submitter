@@ -4,7 +4,8 @@ _Ирония порою может излечить даже то, что за�
 ## Before everything
 - Clone homework repository from your mail. 
 - Generate [ssh-key](https://gitlab2.atp-fivt.org/-/profile/keys)
-- Check `bin/config` script and change `NAME`
+- Check `bin/config` script and set `NAME`
+- Check `mp.py` script and set `NAME`
 - ... hope I have not forgot anything important
 
 ## Before every contest
