@@ -9,7 +9,7 @@ class color:
   reset = "\033[0m"
 
 def print_help():
-  print("Usage: python3 mr [task]...")
+  print("Usage: python3 mr.py [task]...")
   print()
   print("Creates merge request and attaches screenshot.")
   print("Screenshot should be in a directory named after homework e.g. 'hw3'.")

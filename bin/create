@@ -6,7 +6,7 @@ source bin/config
 
 # handle help
 if [ $# -eq 0 ]; then
-  echo -e "Usage: ./create [CODE_SOURCE] HW TASK_ON_SITE"
+  echo -e "Usage: $0 [CODE_SOURCE] HW TASK_ON_SITE"
   echo
   echo -e "Creates file (with content from ${ATTENTION}stdin${RESET})"
   echo

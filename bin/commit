@@ -6,7 +6,7 @@ source bin/config
 
 # handle help
 if [ $# -eq 0 ]; then
-  echo -e "Usage: commit HW ORD_NUM"
+  echo -e "Usage: $0 HW ORD_NUM"
   echo
   echo -e "Commits all (with comment from ${ATTENTION}stdin${RESET}) and pushes the commit"
   echo
