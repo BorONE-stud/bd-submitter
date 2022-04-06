@@ -1,6 +1,5 @@
 import gitlab
 from sys import argv
-import os
 
 NAME = 'user'
 

@@ -32,6 +32,15 @@ case $1 in
   32) export HW=hw3; export ORD_NUM=6;;
   48) export HW=hw3; export ORD_NUM=7;;
   84) export HW=hw3; export ORD_NUM=8;;
+# hw4
+  37)  export HW=hw4; export ORD_NUM=1;;
+  41)  export HW=hw4; export ORD_NUM=2;;
+  47)  export HW=hw4; export ORD_NUM=3;;
+  70)  export HW=hw4; export ORD_NUM=4;;
+  73)  export HW=hw4; export ORD_NUM=5;;
+  87)  export HW=hw4; export ORD_NUM=6;;
+  102) export HW=hw4; export ORD_NUM=7;;
+  112) export HW=hw4; export ORD_NUM=8;;
 
   *)   echo -e "${ERROR}Unknown task number!${RESET}"; exit 1;
 esac
