@@ -24,14 +24,14 @@ case $1 in
   74)  export HW=hw2; export ORD_NUM=9;;
   86)  export HW=hw2; export ORD_NUM=10;;
 # hw3
-  7)  export HW=hw3; export ORD_NUM=1;;
-  9)  export HW=hw3; export ORD_NUM=2;;
-  14) export HW=hw3; export ORD_NUM=3;;
-  16) export HW=hw3; export ORD_NUM=4;;
-  23) export HW=hw3; export ORD_NUM=5;;
-  32) export HW=hw3; export ORD_NUM=6;;
-  48) export HW=hw3; export ORD_NUM=7;;
-  84) export HW=hw3; export ORD_NUM=8;;
+  7)   export HW=hw3; export ORD_NUM=1;;
+  9)   export HW=hw3; export ORD_NUM=2;;
+  14)  export HW=hw3; export ORD_NUM=3;;
+  16)  export HW=hw3; export ORD_NUM=4;;
+  23)  export HW=hw3; export ORD_NUM=5;;
+  32)  export HW=hw3; export ORD_NUM=6;;
+  48)  export HW=hw3; export ORD_NUM=7;;
+  84)  export HW=hw3; export ORD_NUM=8;;
 # hw4
   37)  export HW=hw4; export ORD_NUM=1;;
   41)  export HW=hw4; export ORD_NUM=2;;
@@ -41,6 +41,16 @@ case $1 in
   87)  export HW=hw4; export ORD_NUM=6;;
   102) export HW=hw4; export ORD_NUM=7;;
   112) export HW=hw4; export ORD_NUM=8;;
+
+# hw5
+  65)  export HW=hw5; export ORD_NUM=1;;
+  82)  export HW=hw5; export ORD_NUM=2;;
+  90)  export HW=hw5; export ORD_NUM=3;;
+  96)  export HW=hw5; export ORD_NUM=4;;
+  98)  export HW=hw5; export ORD_NUM=5;;
+  100) export HW=hw5; export ORD_NUM=6;;
+  105) export HW=hw5; export ORD_NUM=7;;
+  109) export HW=hw5; export ORD_NUM=8;;
 
   *)   echo -e "${ERROR}Unknown task number!${RESET}"; exit 1;
 esac
