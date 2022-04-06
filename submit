@@ -9,7 +9,7 @@ if [ $# -eq 0 ]; then
   echo -e "Submits task according to cion rules."
   echo
   echo -e "Options:"
-  # echo -e "  -y, --yes                  auto confirm commit"
+  echo -e "  -y, --yes                  auto confirm commit"
   echo -e "      --from-stdin           Passed to create-script."
   echo -e "      --from-file            Passed to create-script."
   echo
@@ -26,6 +26,7 @@ fi
 # handle flags
 while [ $# -gt 0 ]; do
   case $1 in
+    -y|--yes)     yn='Y'; shift;;
     --from-stdin) CODE_SOURCE="--from-stdin"; shift;;
     --from-file)  CODE_SOURCE="--from-file";  shift;;
     --*) echo "${ERROR}Unknown flag${RESET}"; exit 1;;
@@ -45,12 +46,12 @@ while [ $# -gt 0 ]; do
   bin/create $CODE_SOURCE $HW $TASK_ON_SITE
 
   while true; do
-    read -n 1 -r -p "Check file contents! Are you sure you want to submit? (Y/n) " yn
-    echo
     case $yn in
       Y) break;;
       n) exit;;
     esac
+    read -n 1 -r -p "Check file contents! Are you sure you want to submit? (Y/n) " yn
+    echo
   done
 
   bin/commit $HW $ORD_NUM

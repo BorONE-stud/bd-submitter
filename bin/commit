@@ -45,6 +45,3 @@ esac
 # it would be cool if i checked on git errors
 git commit -m "$comment"
 git push --set-upstream origin "${HW}task${ORD_NUM}"
-
-echo -e "${ATTENTION}don't forget to do merge-request!${RESET}"
-echo -e "Check few lines above. There must be a link to create a merge request"
