@@ -1,34 +1,29 @@
 import gitlab
 from sys import argv
 
-NAME = 'user'
+import access_token
 
 class color:
   attention = "\033[033m"
   underline = "\033[4m"
   reset = "\033[0m"
 
+
 def print_help():
-  print("Usage: python3 mr.py [task]...")
+  print("Usage: python3 mr.py NAME [task]...")
   print()
   print("Creates merge request and attaches screenshot.")
   print("Screenshot should be in a directory named after homework e.g. 'hw3'.")
   print("Screenshot should be named after task on site e.g. '7.png'.")
-  print()
-  print(color.attention, "Set NAME!!!", color.reset, sep='')
-  print('Check top of mr.py script')
-  print()
-  print(color.attention, "Set private token!!!", color.reset, sep='')
-  print("Go to: gitlab > Edit profile > Access token")
-  print("  https://gitlab2.atp-fivt.org/-/profile/personal_access_tokens")
-  print(f"Tick {color.underline}api{color.reset} and save the token file named 'token'!")
 
 
-def token(token_path: str = 'token'):
-  # edit profile > acces token > api
-  with open(token_path, 'r') as file:
-    result = file.readline()[:-1]
-  return result
+def get_access_token(access_token_path: str = 'access_token'):
+  if not access_token.exists():
+    print(f'access_token file \'{access_token.default_path}\' is not found!')
+    print(access_token.how_to_get())
+    set(input('Enter access_token: '))
+  return access_token.get()
+
 
 def map_task(task):
   tasks = {
@@ -50,6 +45,7 @@ def map_task(task):
       pass
   raise ValueError(f'task {task} not found')
 
+
 def create_mr(project, *, hw, ord_task, site_task):
   """
   Creates MR, attaches screenshot.
@@ -69,27 +65,33 @@ def create_mr(project, *, hw, ord_task, site_task):
     'description': f"!{uploaded['markdown']}"
   })
 
+
 def get_project_by(*, name):
   # this is kinda naive, but whatever
-  gl = gitlab.Gitlab('https://gitlab2.atp-fivt.org', private_token=token())
+  gl = gitlab.Gitlab('https://gitlab2.atp-fivt.org', private_token=get_access_token())
   return next(project for project in gl.projects.list() if project.name == name)
+
 
 def main():
   if len(argv) == 1 or argv[1] == '--help':
     print_help()
     return
+
+  NAME = argv[1]
+  tasks = argv[2:]
   
   if NAME == 'user':
-    print(color.attention, "Set NAME!!!", color.reset, sep='')
-    print('Check top of mr.py script')
+    print(color.attention, "NAME is not set!!!", color.reset, sep='')
+    print('Check bin/config.')
     return
 
-  for task in argv[1:]:
+  for task in tasks:
     mapped = map_task(int(task))
     project = get_project_by(name=f"{NAME}-{mapped['hw']}")
     mr = create_mr(project, **mapped)
     print(f"{mapped['hw']}{mapped['ord_task']}:")
     print(" ", mr.web_url)
+
 
 if __name__  == '__main__':
   main()

@@ -9,3 +9,5 @@ tasks
 
 # OSX thing
 .DS_Store
+
+__pycache__

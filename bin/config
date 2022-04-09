@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export NAME="user"
+export NAME='borodinsa'
 
 # if your terminal into colors
 export ATTENTION="\033[033m"

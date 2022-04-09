@@ -41,9 +41,13 @@ while [ $# -gt 0 ]; do
 
   source bin/map $TASK_ON_SITE
 
-  bin/checkout $HW $ORD_NUM
+  if ! bin/checkout $HW $ORD_NUM; then
+    exit $?
+  fi
 
-  bin/create $CODE_SOURCE $HW $TASK_ON_SITE
+  if ! bin/create $CODE_SOURCE $HW $TASK_ON_SITE; then
+    exit $?
+  fi
 
   while true; do
     case $yn in
@@ -54,8 +58,8 @@ while [ $# -gt 0 ]; do
     echo
   done
 
-  bin/commit $HW $ORD_NUM
+  if ! bin/commit $HW $ORD_NUM; then
+    exit $?
+  fi
 done 
 
-echo "You can visit, to create all the merge requests"
-echo "  https://gitlab2.atp-fivt.org/db2021/${NAME}-${HW}/-/branches/all"

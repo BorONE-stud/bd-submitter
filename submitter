@@ -1,0 +1,67 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+  echo "Usage: $0 HW"
+  echo "Where HW={ hw3, hw4, hw5 }"
+  exit
+fi
+
+# configurate
+while true; do
+  source bin/config
+
+  read -n 1 -r -p "Are you ${NAME}? (y/n) " yn
+  echo
+
+  case $yn in 
+    y) break;;
+    n)
+      read -p 'Who are you? ' NEW_NAME 
+      sed -i -e "/^export NAME=/ s/=.*/='${NEW_NAME}'/" bin/config
+      rm bin/config-e # idk why this file is being created
+      ;;
+  esac
+done
+
+# args
+HW=$1
+
+case $HW in
+  # hw1) gone
+  # hw2) gone
+  hw3) TASKS="7 9 14 16 23 32 48 84";;
+  hw4) TASKS="37 41 47 70 73 87 102 112";;
+  hw5) TASKS="65 82 90 96 98 100 105 109";;
+  *) echo -e "${ERROR}Wrong hw label '${HW}'${RESET}"; exit 1;;
+esac
+
+# handle directory
+if [ ! -d $HW ]; then 
+  echo "Directory '${HW}' is not found"
+  exit 1
+fi
+
+# handle directory
+if [ ! -d "$NAME-$HW" ]; then 
+  echo "Repository '${NAME-HW}' is not found"
+  exit 1
+fi
+
+# handle split
+read -p "Enter file to split. Empty to skip: " SOURCE_FILE
+
+if [ ! -z $SOURCE_FILE ]; then
+  cp "$HW/$SOURCE_FILE" "tasks/$HW-solution"
+  bin/split "$HW-solution"
+  rm tasks/"$HW-solution"
+fi
+
+# handle code and screenshots
+if ! bin/verify $HW $TASKS; then
+  exit $?
+fi
+
+# push and mr
+if bin/submit --yes --from-file ${TASKS} && python3 bin/mr.py "$NAME" ${TASKS}; then
+  echo -e "${ATTENTION}You are amazing!${RESET}"
+fi

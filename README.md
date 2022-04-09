@@ -2,42 +2,28 @@
 _Ирония порою может излечить даже то, что заражено пафосом._
 
 ## Before everything
-- Clone homework repository from your mail. 
-- Generate [ssh-key](https://gitlab2.atp-fivt.org/-/profile/keys)
-- Check `bin/config` script and set `NAME`
-- Check `mp.py` script and set `NAME`
+- `pip install python-gitlab` or your personal variation.
+- [Generate ssh-key](https://gitlab2.atp-fivt.org/-/profile/keys). 
+Leave passphrase empty if you do not want to enter it for every task.
+- [Generate access token](https://gitlab2.atp-fivt.org/-/profile/personal_access_tokens). Tick `api` in __Select scopes__. Save it to file named `token` in `bd-submitter` directory.
 - ... hope I have not forgot anything important
 
 ## Before every contest
-- Clone homework repository to `bd-submitter` directory.
+- Clone homework repository to `bd-submitter` directory. [Projects](https://gitlab2.atp-fivt.org/dashboard/projects)
 
-## If you are lost
-- Lanch script without arguments or with flag `--help`. In both cases help will be printed.
-- Write [me](https://t.me/BorONE)
+## How to use submitter
+- Create directory named after homework (e.g. `hw3`).
+- Save code to file in the directory. Follow pattern:
+  - Commment starting with `--`, space, task number (the one on [sql-ex](https://www.sql-ex.ru)).
+  - Code related to task with the nubmer.
+  - Repeat for every task.
+- Save screenshots to the directory. Every screenshot must be named after task number (the one on [sql-ex](https://www.sql-ex.ru)) with `.png` format.
+- Run `submitter`-script with argument wich stands for homework (e.g. `hw3`).
 
-## How push
-### From stdin
-Just type `./submit [--from-stdin] <task>...` in terminal.
-End input with `ctrl+d`. Flag is optional.
+### If you already have splitted into files
+- Make sure your tasks named according ot rules: `task-N.sql`, where `N` is a task number (the one on [sql-ex](https://www.sql-ex.ru)).
+- Copy all of your task files to directory `tasks` in `bd-submitter` directory.
+- Leave 'file to split' empty. (It appears while running `submitter` script).
 
-### From file
-Just type `./submit --from-file <task>...` in terminal.
-Make sure you have corresponding files in `tasks` directory.
-
-## How MR
-In main directory create directory create homework directory named `hw<{1,2,3,4,5}>`.
-Put all screenshots in created directory. Name them according to site number with `.png` format
-(e.g. `hw3`: `7.png`, `9.png`, ...).
-Launch `mr`-script with task site numbers (e.g. `7 9 ...`).
-Check printed url to make sure that everything is ok.
-
-## Useful tools
-### Split
-If you have file with tasks you can split it.
-If you follow format, file for each task will be splitted.
-You can check example with flag `--example`.
-To erase example use flag `--erase-example`.
-
-### Auto-comment
-Check `commit` script in `bin/` and find `COMMENT_GENERATOR`.
-You can make custom generator if you want.
+### What do you mean by 'Are you *?'
+- Name before dash and `hwX` on each repository. Propably your @username on (gitlab)[https://gitlab2.atp-fivt.org]

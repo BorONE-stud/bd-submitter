@@ -43,6 +43,8 @@ case $1 in
     ;;
 esac
 
+mkdir -p tasks
+
 CURRENT_FILE='tasks/task-unkown.sql'
 
 while IFS= read -r line; do

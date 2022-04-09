@@ -1,0 +1,24 @@
+#!/bin/bash
+
+source bin/config
+
+# verify HW TASKS
+
+HW=$1
+shift
+
+while [ $# -gt 0 ]; do
+  CODE_FILE="tasks/task-${1}.sql"
+  SCREENSHOT="$HW/${1}.png"
+  shift
+
+  if [ ! -f "$SCREENSHOT" ]; then
+    echo -e "${ERROR}'$SCREENSHOT' is not found!${RESET}"
+    exit 1
+  fi
+
+  if [ ! -f "$CODE_FILE" ]; then
+    echo -e "${ERROR}File '$CODE_FILE' is not found!${RESET}"
+    exit 1
+  fi
+done
