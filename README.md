@@ -14,7 +14,7 @@ Leave passphrase empty if you do not want to enter it for every task.
 ## How to use submitter
 - Create directory named after homework (e.g. `hw3`).
 - Save code to file in the directory. Follow pattern:
-  - Commment starting with `--`, space, task number (the one on [sql-ex](https://www.sql-ex.ru)).
+  - Comment starting with `--`, space, task number (the one on [sql-ex](https://www.sql-ex.ru)).
   - Code related to task with the nubmer.
   - Repeat for every task.
 - Save screenshots to the directory. Every screenshot must be named after task number (the one on [sql-ex](https://www.sql-ex.ru)) with `.png` format.
@@ -26,4 +26,4 @@ Leave passphrase empty if you do not want to enter it for every task.
 - Leave 'file to split' empty. (It appears while running `submitter` script).
 
 ### What do you mean by 'Are you *?'
-- Name before dash and `hwX` on each repository. Propably your @username on (gitlab)[https://gitlab2.atp-fivt.org]
+- Name before dash and `hwX` on each repository. Propably your @username on [gitlab](https://gitlab2.atp-fivt.org)
