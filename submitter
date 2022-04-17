@@ -10,7 +10,7 @@ fi
 while true; do
   source bin/config
 
-  read -n 1 -r -p "Are you ${NAME}? (y/n) " yn
+  read -n 1 -r -p "Are you '${NAME}'? (y/n) " yn
   echo
 
   case $yn in 
@@ -37,13 +37,15 @@ esac
 
 # handle directory
 if [ ! -d $HW ]; then 
-  echo "Directory '${HW}' is not found"
+  echo -e "${ERROR}Directory '${HW}' is not found${RESET}"
   exit 1
 fi
 
 # handle directory
 if [ ! -d "$NAME-$HW" ]; then 
-  echo "Repository '${NAME-HW}' is not found"
+  echo -e "${ERROR}Repository '$NAME-$HW' is not found${RESET}"
+  echo "Propably you should check:"
+  echo "  https://gitlab2.atp-fivt.org/db2021/$NAME-$HW"
   exit 1
 fi
 
