@@ -65,5 +65,5 @@ fi
 
 # push and mr
 if bin/submit --yes --from-file ${TASKS} && python3 bin/mr.py "$NAME" ${TASKS}; then
-  echo -e "${ATTENTION}You are amazing!${RESET}"
+  echo -e "${SUCCES}You are amazing!${RESET}"
 fi

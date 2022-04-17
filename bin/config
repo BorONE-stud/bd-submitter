@@ -4,7 +4,7 @@ export NAME='borodinsa'
 
 # if your terminal into colors
 export ATTENTION="\033[033m"
-export ATTENTION="\033[032m"
+export SUCCES="\033[032m"
 export ERROR="\033[031m"
 export BALD="\033[1m"
 export BLANK="\033[2m"
